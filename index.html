@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -10,99 +9,96 @@
     <title>Pokedex</title>
 </head>
 <body>
-
-<div id="pokedex">
-    <div id="left">
-        <div id="logo"></div>
-        <div id="bg_curve1_left"></div>
-        <div id="bg_curve2_left"></div>
-        <div id="curve1_left">
-            <div id="buttonGlass">
-                <div id="reflect"> </div>
-            </div>
-            <div id="miniButtonGlass1"></div>
-            <div id="miniButtonGlass2"></div>
-            <div id="miniButtonGlass3"></div>
-        </div>
-        <div id="curve2_left">
-            <div id="junction">
-                <div id="junction1"></div>
-                <div id="junction2"></div>
+<div class="pokedex">
+    <div class="left-container">
+        <div class="left-container__top-section">
+            <div class="top-section__blue"></div>
+            <div class="top-section__small-buttons">
+                <div class="top-section__red"></div>
+                <div class="top-section__yellow"></div>
+                <div class="top-section__green"></div>
             </div>
         </div>
-        <div id="screen">
-            <div id="topPicture">
-                <div id="buttontopPicture1"></div>
-                <div id="buttontopPicture2"></div>
+        <div class="left-container__main-section-container">
+            <div class="left-container__main-section">
+                <div class="main-section__white">
+                    <div class="main-section__black">
+                        <div class="main-screen hide">
+                            <div class="screen__header">
+                                <span class="poke-name"></span>
+                                <span class="poke-id"></span>
+                            </div>
+                            <div class="screen__image">
+                                <img src="" class="poke-front-image" alt="front">
+                                <img src="" class="poke-back-image" alt="back">
+                            </div>
+                            <div class="screen__description">
+                                <div class="stats__types">
+                                    <span class="poke-type-one"></span>
+                                    <span class="poke-type-two"></span>
+                                </div>
+                                <div class="screen__stats">
+                                    <p class="stats__weight">
+                                        weight: <span class="poke-weight"></span>
+                                    </p>
+                                    <p class="stats__height">
+                                        height: <span class="poke-height"></span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="left-container__controllers">
+                    <div class="controllers__d-pad">
+                        <div class="d-pad__cell top"></div>
+                        <div class="d-pad__cell left"></div>
+                        <div class="d-pad__cell middle"></div>
+                        <div class="d-pad__cell right"></div>
+                        <div class="d-pad__cell bottom"></div>
+                    </div>
+                    <div class="controllers__buttons">
+                        <div class="buttons__button">B</div>
+                        <div class="buttons__button">A</div>
+                    </div>
+                </div>
             </div>
-            <div class="picture" id="picture">
-            </div>
-            <div id="buttonbottomPicture"></div>
-            <div id="speakers">
-                <div class="sp"></div>
-                <div class="sp"></div>
-                <div class="sp"></div>
-                <div class="sp"></div>
-            </div>
-        </div>
-        <div id="bigbluebutton"></div>
-        <div id="barbutton1"></div>
-        <div id="barbutton2"></div>
-        <div id="cross">
-            <div id="leftcross">
-                <div id="leftT"></div>
-            </div>
-            <div id="topcross">
-                <div id="upT"></div>
-            </div>
-            <div id="rightcross">
-                <div id="rightT"></div>
-            </div>
-            <div id="midcross">
-                <div id="midCircle"></div>
-            </div>
-            <div id="botcross">
-                <div id="downT"></div>
+            <div class="left-container__right">
+                <div class="left-container__hinge"></div>
+                <div class="left-container__hinge"></div>
             </div>
         </div>
     </div>
-    <div id="right">
-        <div id="stats">
-            <strong class="pokeID">ID:</strong> <br/>
-            <strong class="pokeName">Name:</strong> <br/>
-            <strong class="pokeType">Type:</strong> <br/>
-            <strong class="pokeHeight">Height:</strong> <br/>
-            <strong class="pokeWeight">Weight:</strong> <br/><br/>
-            <!--<strong>The duck Pokemon</strong><br/-->
-            <strong class="pokeMoves"></strong>
+    <div class="right-container">
+        <div class="right-container__black">
+            <div class="right-container__screen">
+                <div class="list-item"></div>
+                <div class="list-item"></div>
+                <div class="list-item"></div>
+                <div class="list-item"></div>
+                <div class="list-item"></div>
+                <div class="list-item"></div>
+                <div class="list-item"></div>
+                <div class="list-item"></div>
+                <div class="list-item"></div>
+                <div class="list-item"></div>
+                <div class="list-item"></div>
+                <div class="list-item"></div>
+                <div class="list-item"></div>
+                <div class="list-item"></div>
+                <div class="list-item"></div>
+                <div class="list-item"></div>
+                <div class="list-item"></div>
+                <div class="list-item"></div>
+                <div class="list-item"></div>
+                <div class="list-item"></div>
+            </div>
         </div>
-        <div id="blueButtons1">
-            <div class="blueButton"></div>
-            <div class="blueButton"></div>
-            <div class="blueButton"></div>
-            <div class="blueButton"></div>
-            <div class="blueButton"></div>
+        <div class="right-container__buttons">
+            <div class="left-button">Prev</div>
+            <div class="right-button">Next</div>
         </div>
-        <div id="blueButtons2">
-            <div class="blueButton"></div>
-            <div class="blueButton"></div>
-            <div class="blueButton"></div>
-            <div class="blueButton"></div>
-            <div class="blueButton"></div>
-        </div>
-        <div id="miniButtonGlass4"></div>
-        <div id="miniButtonGlass5"></div>
-        <div id="barbutton3"></div>
-        <div id="barbutton4"></div>
-        <div id="yellowBox1"></div>
-        <div id="yellowBox2"></div>
-        <div id="bg_curve1_right"></div>
-        <div id="bg_curve2_right"></div>
-        <div id="curve1_right"></div>
-        <div id="curve2_right"></div>
     </div>
 </div>
 <script src="dex.js"></script>
 </body>
-</html>
-
