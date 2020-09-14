@@ -142,4 +142,4 @@ for (const pokeListItem of pokeListItems){
 };
 
 //BOOT UP POKEDEX
-fetchPokeList('https://pokeapi.co/api/v2/pokemon?offset=0&limit=20');
+fetchPokeList('https://pokeapi.co/api/v2/pokemon?offset=0&limit=10');
