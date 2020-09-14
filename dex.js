@@ -9,4 +9,29 @@ const pokeWeight = document.querySelector('.poke-weight');
 const pokeHeight = document.querySelector('.poke-height');
 const pokeListItems = document.querySelector('.list-item');
 const leftButton = document.querySelector('.left-button');
-const rightButton = document.querySelector('.rightbutton');
+const rightButton = document.querySelector('.right-button');
+
+fetch('https://pokeapi.co/api/v2/pokemon/1')
+    .then (response => response.json())
+    .then(data => {
+        console.log(data);
+    mainScreen.classList.remove('hide');
+        pokeName.textContent = data['name'];
+        pokeId.textContent = data['id'];
+        pokeWeight.textContent = data['weight'];
+        pokeHeight.textContent = data['height'];
+
+        const dataType = data['types'];
+        const dataFirstType = dataType[0];
+        const dataSecondType = dataType[1];
+        pokeTypeOne.textContent = dataFirstType['type']['name'];
+        if (dataSecondType){
+            pokeTypeTwo.classList.remove('hide');
+            pokeTypeTwo.textContent = dataSecondType['type']['name'];
+        } else {
+            pokeTypeTwo.classList.add('hide');
+            pokeTypeTwo.textContent = '';
+        }
+pokeFrontImage.src = data['sprites']['front_default'] || '';
+pokeBackImage.src = data['sprites']['back_default']        || '';
+    });
