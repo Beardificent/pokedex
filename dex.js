@@ -10,28 +10,54 @@ const pokeHeight = document.querySelector('.poke-height');
 const pokeListItems = document.querySelector('.list-item');
 const leftButton = document.querySelector('.left-button');
 const rightButton = document.querySelector('.right-button');
+//constants and variables
+const TYPES = [
+    'normal', 'fighting', 'flying', 'poison', 'ground',
+    'rock', 'ghost', 'bug', 'steel', 'fire', 'water',
+    'grass', 'electric', 'psychic', 'ice', 'dragon',
+    'dark', 'fairy'
+];
+
+
+//functions
+//function that calls on strings, to capitalize every first letter
+const capitalize = (str) => str[0].toUpperCase() + str.substr(1);
+
+//This erases the classes that we would add if we kept on looking for pokemons.
+const resetScreen = () => {
+    mainScreen.classList.remove('hide');
+    for (const type of TYPES) {
+mainScreen.classList.remove(type);
+    }
+};
 
 fetch('https://pokeapi.co/api/v2/pokemon/1')
-    .then (response => response.json())
+    .then(response => response.json())
     .then(data => {
-        console.log(data);
-    mainScreen.classList.remove('hide');
-        pokeName.textContent = data['name'];
-        pokeId.textContent = data['id'];
-        pokeWeight.textContent = data['weight'];
-        pokeHeight.textContent = data['height'];
+
+        resetScreen();
 
         const dataType = data['types'];
         const dataFirstType = dataType[0];
         const dataSecondType = dataType[1];
-        pokeTypeOne.textContent = dataFirstType['type']['name'];
-        if (dataSecondType){
+        pokeTypeOne.textContent = capitalize(dataFirstType['type']['name']);
+        if (dataSecondType) {
             pokeTypeTwo.classList.remove('hide');
-            pokeTypeTwo.textContent = dataSecondType['type']['name'];
+            pokeTypeTwo.textContent = capitalize(dataSecondType['type']['name']);
         } else {
             pokeTypeTwo.classList.add('hide');
             pokeTypeTwo.textContent = '';
         }
-pokeFrontImage.src = data['sprites']['front_default'] || '';
-pokeBackImage.src = data['sprites']['back_default']        || '';
+
+        mainScreen.classList.add(dataFirstType['type']['name']);
+
+
+        pokeName.textContent = capitalize(data['name']);
+        pokeId.textContent = data['id'];
+        pokeWeight.textContent = data['weight'];
+        pokeHeight.textContent = data['height'];
+
+
+        pokeFrontImage.src = data['sprites']['front_default'] || '';
+        pokeBackImage.src = data['sprites']['back_default'] || '';
     });
