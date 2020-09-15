@@ -171,7 +171,9 @@ const handleListItemClick = (e) => {
 };
 const handleLeftDPadClick = () => {
 
+const handleRightDPadClick = () =>{
 
+}
 };
 
 
@@ -188,10 +190,6 @@ leftDPad.addEventListener('click', handleLeftDPadClick);
 rightDPad.addEventListener('click', handleRightButtonClick);
 
 
-
-
-
-//rightDPad.addEventListener('click', handeRightDPadClick);
 
 //BOOT UP POKEDEX
 fetchPokeList('https://pokeapi.co/api/v2/pokemon?offset=0&limit=10');
