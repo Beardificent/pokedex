@@ -14,6 +14,7 @@ const rightButton = document.querySelector('.right-button');
 const leftDPad = document.querySelector('.d-pad__cell.left');
 const rightDPad = document.querySelector('.d-pad__cell.right');
 const pokeListMoves = document.querySelectorAll('.list-move');
+const aButton = document.querySelector('#aButton');
 
 //CONSTANTS & VARIABLES
 
@@ -72,6 +73,7 @@ const fetchPokeList = url => {
 
 
  */
+
             //Loop through Poke list items and get an item.
             for( let i = 0; i < pokeListItems.length ; i++){
                 const pokeListItem = pokeListItems[i];
@@ -109,6 +111,7 @@ const fetchPokeData = id =>{
                 }
             }
             resetScreen();
+
             let moveList = data.moves;
             const dataType = data['types'];
             const dataFirstType = dataType[0];
@@ -173,6 +176,8 @@ const handleLeftDPadClick = () => {
 
 
 //EVENT LISTENERS
+//aButton.addEventListener('click', getMoveList);
+
 rightButton.addEventListener('click',handleRightButtonClick);
 leftButton.addEventListener('click',handleLeftButtonClick);
 for (const pokeListItem of pokeListItems){
@@ -180,6 +185,9 @@ for (const pokeListItem of pokeListItems){
 };
 
 leftDPad.addEventListener('click', handleLeftDPadClick);
+rightDPad.addEventListener('click', handleRightButtonClick);
+
+
 
 
 
