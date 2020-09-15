@@ -23,8 +23,8 @@ let url = 'https://pokeapi.co/api/v2/pokemon/'
 fetch (url + inputId)
     .then ((response)  => response.json())
     .then((data) => {
-        pokeFront.src = data.sprites['front_default'] || " ";
-        pokeBack.src = data.sprites['back_default'] || " ";
+        pokeFront.src = data.sprites['front_default'] || "";
+        pokeBack.src = data.sprites['back_default'] || "";
         pokeName.textContent = data.name;
         pokeId.textContent = "#" + data.id;
         weight = data.weight / 10;
