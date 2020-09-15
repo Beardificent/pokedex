@@ -14,6 +14,7 @@ const rightButton = document.querySelector('.right-button');
 const leftDPad = document.querySelector('.d-pad__cell.left');
 const rightDPad = document.querySelector('.d-pad__cell.right');
 const pokeListMoves = document.querySelectorAll('.list-move');
+const aButton = document.getElementById('aButton');
 
 //CONSTANTS & VARIABLES
 
@@ -121,6 +122,7 @@ const fetchPokeList = url => {
 
 const fetchPokeData = id =>{
 
+
     fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
         .then(response => response.json())
         .then(data => {
@@ -191,16 +193,17 @@ const handleListItemClick = (e) => {
 };
 const handleLeftDPadClick = () => {
 
+}
+
 const handleRightDPadClick = () =>{
 
-const  handleAButton =  () => {
-    getMoves()
-    }
-
 }
-};
 
-
+const  handleAButton =  () => {
+    let url = 'https://pokeapi.co/api/v2/pokemon/'
+    let input = document.getElementById('findPoke').value;
+    console.log(url+input);
+}
 //EVENT LISTENERS
 
 
@@ -214,6 +217,6 @@ for (const pokeListItem of pokeListItems){
 leftDPad.addEventListener('click', handleLeftDPadClick);
 rightDPad.addEventListener('click', handleRightButtonClick);
 
-
+aButton.addEventListener('click', handleAButton)
 //BOOT UP POKEDEX
 fetchPokeList('https://pokeapi.co/api/v2/pokemon?offset=0&limit=10');
