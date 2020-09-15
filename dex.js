@@ -33,7 +33,7 @@ let nextUrl = null;
 
 //FUNCTIONS
 
-
+//tried Siccos code, didn't work. I'm a retard. I know. FLuff this all. I'm dumb, I know.
 function getMoves (moves){
     let moveArray = [];
     if (moves.length > MAX_MOVES) {
@@ -108,9 +108,14 @@ const fetchPokeList = url => {
                     pokeListItem.textContent = '';
 
                 }
+
+
+
             }
         });
 };
+
+
 
 //LEFT HAND SCREEN
 
