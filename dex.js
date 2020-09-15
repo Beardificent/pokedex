@@ -14,7 +14,6 @@ const rightButton = document.querySelector('.right-button');
 const leftDPad = document.querySelector('.d-pad__cell.left');
 const rightDPad = document.querySelector('.d-pad__cell.right');
 const pokeListMoves = document.querySelectorAll('.list-move');
-const aButton = document.querySelector('#aButton');
 
 //CONSTANTS & VARIABLES
 
@@ -33,6 +32,24 @@ let nextUrl = null;
 
 
 //FUNCTIONS
+
+
+function getMoves (moves){
+    let moveArray = [];
+    if (moves.length > MAX_MOVES) {
+        for (let i = 0; i < MAX_MOVES; i++) {
+            let min = 0;
+            let max = moves.length;
+            let random = Math.floor(Math.random() * (+max - +min)) + +min;
+            moveArray = +moves[random].move.name + ', ';
+        }
+    }else {
+        for (let i = 0; i <= moves.length; i++){
+            moveArray += moves[i].move.name + ' ';
+        }
+    }
+}
+
 
 //function that calls on strings, to capitalize every first letter
 const capitalize = (str) => str[0].toUpperCase() + str.substr(1);
@@ -102,14 +119,14 @@ const fetchPokeData = id =>{
     fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
         .then(response => response.json())
         .then(data => {
-            function getMoveList (moveList){
+         /*   function getMoveList (moveList){
                 let moveArray = [];
 
                 for( let i = 0; i < moveList.length; i++){
                     moveArray.push(moveList[i].move.name);
 
                 }
-            }
+            }*/
             resetScreen();
 
             let moveList = data.moves;
@@ -139,13 +156,11 @@ const fetchPokeData = id =>{
             pokeHeight.textContent = height;
             pokeFrontImage.src = data['sprites']['front_default'] || '';
             pokeBackImage.src = data['sprites']['back_default'] || '';
+
         });
 
 
 }
-
-
-
 
 //button handlers
 const handleRightButtonClick = () => {
@@ -173,12 +188,17 @@ const handleLeftDPadClick = () => {
 
 const handleRightDPadClick = () =>{
 
+const  handleAButton =  () => {
+    getMoves()
+    }
+
 }
 };
 
 
 //EVENT LISTENERS
-//aButton.addEventListener('click', getMoveList);
+
+
 
 rightButton.addEventListener('click',handleRightButtonClick);
 leftButton.addEventListener('click',handleLeftButtonClick);
@@ -188,7 +208,6 @@ for (const pokeListItem of pokeListItems){
 
 leftDPad.addEventListener('click', handleLeftDPadClick);
 rightDPad.addEventListener('click', handleRightButtonClick);
-
 
 
 //BOOT UP POKEDEX
