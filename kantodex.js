@@ -11,7 +11,7 @@ console.log('getPokeButton works');
 fetch ('https://pokeapi.co/api/v2/pokemon/4')
     .then ((response)  => response.json())
     .then((data) => {
-        document.getElementById('showPokemon').innerHTML = data.sprite;
+        document.getElementById('showPokemon').innerHTML = data.sprites;
         document.getElementById('pokemonName').innerHTML = data.name;
         document.getElementById('pokemonId').innerHTML = data.id;
         document.getElementById('pokemonWeight').innerHTML = data.weight + 'kg';
