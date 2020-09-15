@@ -2,6 +2,12 @@
 ////2. CREATE THE FUNCTION AND ADD IT AS PARAMETER FOR YOUR BUTTON EVENT LISTENER. (test with console.log if it works)
 
 
+const pokeFront = document.querySelector('.pokemonFront');
+const pokeBack = document.querySelector('.pokemonBack');
+const pokeName = document.querySelector('.pokemonName');
+const pokeId = document.querySelector('.pokemonId');
+const pokeWeight = document.querySelector('.pokemonWeight');
+const pokeHeight = document.querySelector('.pokemonHeight');
 
 //FUNCTIONS
 
@@ -11,11 +17,12 @@ console.log('getPokeButton works');
 fetch ('https://pokeapi.co/api/v2/pokemon/4')
     .then ((response)  => response.json())
     .then((data) => {
-        document.getElementById('showPokemon').innerHTML = data.sprites;
-        document.getElementById('pokemonName').innerHTML = data.name;
-        document.getElementById('pokemonId').innerHTML = data.id;
-        document.getElementById('pokemonWeight').innerHTML = data.weight + 'kg';
-        document.getElementById('pokemonHeight').innerHTML = data.height + 'm';
+        pokeFront.textContent = data.sprites['front_default'];
+        pokeBack.textContent = data.sprites['back_default'];
+        pokeName.textContent = data.name;
+        pokeId.textContent = "#" + data.id
+        pokeWeight.textContent = data.weight + 'kg';
+        pokeHeight.textContent = data.height + 'm';
     })
     .catch((error)=> console.log(error))
 
