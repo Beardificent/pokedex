@@ -1,1 +1,3 @@
 # pokedex
+
+the fetching isn't hard, it's that javascript is pretending not to know what I want to do, but it does, it does...damn you, javascript...
