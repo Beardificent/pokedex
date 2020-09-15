@@ -11,18 +11,26 @@ const pokeHeight = document.querySelector('.pokemonHeight');
 
 //FUNCTIONS
 
+
+
 // 2.
 function getPoke(){
 console.log('getPokeButton works');
-fetch ('https://pokeapi.co/api/v2/pokemon/4')
+
+let inputId = document.getElementById('pokeFind').value;
+let url = 'https://pokeapi.co/api/v2/pokemon/'
+
+fetch (url + inputId)
     .then ((response)  => response.json())
     .then((data) => {
-        pokeFront.textContent = data.sprites['front_default'];
-        pokeBack.textContent = data.sprites['back_default'];
+        pokeFront.src = data.sprites['front_default'] || " ";
+        pokeBack.src = data.sprites['back_default'] || " ";
         pokeName.textContent = data.name;
-        pokeId.textContent = "#" + data.id
-        pokeWeight.textContent = data.weight + 'kg';
-        pokeHeight.textContent = data.height + 'm';
+        pokeId.textContent = "#" + data.id;
+        weight = data.weight / 10;
+        height = data.height / 10;
+        pokeWeight.textContent = weight + 'kg';
+        pokeHeight.textContent = height + 'm';
     })
     .catch((error)=> console.log(error))
 
