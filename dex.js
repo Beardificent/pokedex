@@ -11,6 +11,9 @@ const pokeHeight = document.querySelector('.poke-height');
 const pokeListItems = document.querySelectorAll('.list-item');
 const leftButton = document.querySelector('.left-button');
 const rightButton = document.querySelector('.right-button');
+const leftDPad = document.querySelector('.d-pad__cell.left');
+const rightDPad = document.querySelector('.d-pad__cell.right');
+const pokeListMoves = document.querySelectorAll('.list-move');
 
 //CONSTANTS & VARIABLES
 
@@ -20,6 +23,8 @@ const TYPES = [
     'grass', 'electric', 'psychic', 'ice', 'dragon',
     'dark', 'fairy'
 ];
+
+const MAX_MOVES = 4;
 
 // WE USE 'LET' BECAUSE THESE WILL UPDATE (REMINDER: CONSTANTS CANT CHANGE)
 let prevUrl = null;
@@ -31,7 +36,7 @@ let nextUrl = null;
 //function that calls on strings, to capitalize every first letter
 const capitalize = (str) => str[0].toUpperCase() + str.substr(1);
 
-//This erases the classes that we would add if we kept on looking for pokemons.
+//This erases the classes that we would add if we kept clicking on pokemons.
 const resetScreen = () => {
     mainScreen.classList.remove('hide');
     for (const type of TYPES) {
@@ -39,31 +44,43 @@ const resetScreen = () => {
     }
 };
 
-
+//Get data right side of screen.
 const fetchPokeList = url => {
 
-//Get data right side of screen.
+
     fetch(url)
         .then(response => response.json())
         .then(data => {
             // const results = data ['results']; IS THE SAME THING, CALLED DESTRUCTURING
-            const { results, previous, next } = data;
+            const { results, previous, next, moveResult} = data;
             prevUrl = previous;
             nextUrl = next;
 
+           /* const dataMove = data['abilities']
+            const moveOne = dataMove [0];
+            const moveTwo = dataMove [1];
+            const moveThree = dataMove [2];
+            const moveFour = dataMove [3];
 
 
-            //Loop through Pokelistitems and get an item.
+            pokeListMoves.textcontent = capitalize(moveOne['name']);
+
+            for(let i = 0; i < pokeListMoves.length; i++){
+                const pokeListMove = pokeListMoves[i];
+                const moveResults = moveResult[i];
+
+
+
+ */
+            //Loop through Poke list items and get an item.
             for( let i = 0; i < pokeListItems.length ; i++){
                 const pokeListItem = pokeListItems[i];
                 const resultData = results[i];
 
-
-
                 if (resultData){
                     //const name = resultData; IS THE SAME THING BUT NOT DESTRUCTURED
                     const { name, url } = resultData;
-                    //THIS WILL MAKE THE URL SPLIT AFTER EVERY '/' AND THUS CREATING A LIST IF ELEMENTS WE CAN USE (SECOND TO LAST IS THE (pokemon)INDEX for example°
+                    //THIS WILL MAKE THE URL SPLIT AFTER EVERY '/' AND THUS CREATING A LIST OF ELEMENTS WE CAN USE (SECOND TO LAST IS THE (pokemon)INDEX for example°
                     const urlArray = url.split('/');
                     const id = urlArray[urlArray.length - 2];
                     pokeListItem.textContent = id + '. ' + capitalize(name);
@@ -76,13 +93,23 @@ const fetchPokeList = url => {
         });
 };
 
+//LEFT HAND SCREEN
+
 const fetchPokeData = id =>{
 
     fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
         .then(response => response.json())
         .then(data => {
-            resetScreen();
+            function getMoveList (moveList){
+                let moveArray = [];
 
+                for( let i = 0; i < moveList.length; i++){
+                    moveArray.push(moveList[i].move.name);
+
+                }
+            }
+            resetScreen();
+            let moveList = data.moves;
             const dataType = data['types'];
             const dataFirstType = dataType[0];
             const dataSecondType = dataType[1];
@@ -97,18 +124,26 @@ const fetchPokeData = id =>{
 
             mainScreen.classList.add(dataFirstType['type']['name']);
 
+            let weight = (data['weight'] / 10);
+            let height = (data['height'] / 10);
 
             pokeName.textContent = capitalize(data['name']);
-            //We change the id to a string and with padStart we say that it needs to be 3 digits. If no digit is present, replace with '0'
-            pokeId.textContent = '#' + data['id'].toString().padStart(3, '0');
             pokeWeight.textContent = data['weight'];
             pokeHeight.textContent = data['height'];
+            //We change the id to a string and with padStart we say that it needs to be 3 digits. If no digit is present, replace with '0'
+            pokeId.textContent = '#' + data['id'].toString().padStart(3, '0');
+            pokeWeight.textContent = weight;
+            pokeHeight.textContent = height;
             pokeFrontImage.src = data['sprites']['front_default'] || '';
             pokeBackImage.src = data['sprites']['back_default'] || '';
         });
 
 
 }
+
+
+
+
 //button handlers
 const handleRightButtonClick = () => {
     if (nextUrl){
@@ -131,7 +166,10 @@ const handleListItemClick = (e) => {
     const id = listItem.textContent.split('.')[0];
     fetchPokeData(id);
 };
+const handleLeftDPadClick = () => {
 
+
+};
 
 
 //EVENT LISTENERS
@@ -140,6 +178,12 @@ leftButton.addEventListener('click',handleLeftButtonClick);
 for (const pokeListItem of pokeListItems){
     pokeListItem.addEventListener('click', handleListItemClick);
 };
+
+leftDPad.addEventListener('click', handleLeftDPadClick);
+
+
+
+//rightDPad.addEventListener('click', handeRightDPadClick);
 
 //BOOT UP POKEDEX
 fetchPokeList('https://pokeapi.co/api/v2/pokemon?offset=0&limit=10');
