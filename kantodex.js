@@ -12,28 +12,29 @@ const pokeHeight = document.querySelector('.pokemonHeight');
 //FUNCTIONS
 
 
-
 // 2.
-function getPoke(){
-console.log('getPokeButton works');
+function getPoke() {
+    console.log('getPokeButton works');
 
-let inputId = document.getElementById('pokeFind').value;
-let url = 'https://pokeapi.co/api/v2/pokemon/'
+    let inputId = document.getElementById('pokeFind').value;
+    let url = 'https://pokeapi.co/api/v2/pokemon/'
 
-fetch (url + inputId)
-    .then ((response)  => response.json())
-    .then((data) => {
-        pokeFront.src = data.sprites['front_default'] || "";
-        pokeBack.src = data.sprites['back_default'] || "";
-        pokeName.textContent = data.name;
-        pokeId.textContent = "#" + data.id;
-        weight = data.weight / 10;
-        height = data.height / 10;
-        pokeWeight.textContent = weight + 'kg';
-        pokeHeight.textContent = height + 'm';
-    })
-    .catch((error)=> console.log(error))
-
+    fetch(url + inputId)
+        .then((response) => response.json())
+        .then((data) => {
+            pokeFront.src = data['sprites']['front_default'] || "";
+            pokeBack.src = data['sprites']['back_default'] || "";
+            pokeName.textContent = data.name;
+            pokeId.textContent = "#" + data.id.toString().padStart(3, '0');
+            weight = data.weight / 10;
+            height = data.height / 10;
+            pokeWeight.textContent = weight + 'kg';
+            pokeHeight.textContent = height + 'm';
+        })
+        .catch((error) => console.log(error))
+    if (!inputId){
+        console.error('NO CAN DO');
+    }
 }
 
 
